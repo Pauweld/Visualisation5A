@@ -10,7 +10,7 @@ function Graph(id,width,height,values)
 	this.x = d3.scale.linear().domain([0,20]).range([0,this.width]);
 	this.y = d3.scale.linear().domain([0,100]).range([0,this.height]);
 
-	var map = this.values.map(function(i){
+	this.map = this.values.map(function(i){
 		return parseInt(i);
 	})
 
@@ -38,7 +38,7 @@ function Graph(id,width,height,values)
 
 	this.histogram = d3.layout.histogram()
 		.bins(bin)
-		(map);
+		(this.map);
 
 	this.bars = this.svg.selectAll(".bar")
 		.data(this.histogram)
@@ -55,4 +55,8 @@ function Graph(id,width,height,values)
 	this.setValues=function(values){
 		this.values=values;
 		return(this);};
+}
+
+function updateRangeBar(g, val){
+	//console.log(d3.select('#graph').selectAll(".bar").data(g.histogram.bins(val)));
 }
