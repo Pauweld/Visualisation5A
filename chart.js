@@ -58,6 +58,6 @@ function Graph(id,width,height,values,binH)
 
 function updateRangeBar(g, values, val){
 	d3.select("#graph").selectAll("svg").remove();
-	g = new Graph('graph', 300, 100, values, val);
+	g = new Graph('graph', 300, 100, values, parseInt(val));
 	return g;
 }
