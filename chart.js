@@ -1,10 +1,9 @@
-function Graph(id,width,height,values)
+function Graph(id,width,height,values,binH)
 {
 	this.margin={top:5,bottom:30+5,left:10,right:10};
 	this.width=width-this.margin.left+this.margin.right;
 	this.height=height-this.margin.top+this.margin.bottom;
 	this.values=values;
-	var bin = 10;
 	var that=this;
 
 	this.x = d3.scale.linear().domain([0,20]).range([0,this.width]);
@@ -37,7 +36,7 @@ function Graph(id,width,height,values)
 		.call(this.xAxis);
 
 	this.histogram = d3.layout.histogram()
-		.bins(bin)
+		.bins(binH)
 		(this.map);
 
 	this.bars = this.svg.selectAll(".bar")
@@ -57,6 +56,8 @@ function Graph(id,width,height,values)
 		return(this);};
 }
 
-function updateRangeBar(g, val){
-	//console.log(d3.select('#graph').selectAll(".bar").data(g.histogram.bins(val)));
+function updateRangeBar(g, values, val){
+	d3.select("#graph").selectAll("svg").remove();
+	g = new Graph('graph', 300, 100, values, val);
+	return g;
 }
