@@ -46,7 +46,7 @@ $(document).ready(function () {
   var binH = $('#bin').val();
   var g = new Graph('graph',300,100,values,parseInt(binH));
   $('#valueBinH').val(binH);
-  $("#bin").on("change", function(){
+  $("#bin").on("input", function(){
     $('#valueBinH').val(this.value);
     updateRangeBar(g, values, this.value);
   })
