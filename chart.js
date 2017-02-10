@@ -1,6 +1,6 @@
 function Graph(id,width,height,values,binH,regression)
 {
-	this.margin={top:5,bottom:30+5,left:10,right:10};
+	this.margin={top:15,bottom:30+15,left:10,right:10};
 	this.width=width-this.margin.left+this.margin.right;
 	this.height=height-this.margin.top+this.margin.bottom;
 	this.values=values;
