@@ -38,18 +38,27 @@ input[type="range"]:after {
 </head>
 <body>
 <div id="graph"></div>
-Histogram <input id="bin" type="range" value="10" min="1" max="20" step="1">  <input type="text" id="valueBinH" value="10" disabled="disabled" style="width: 20px;"/>
+<span style="display: inline-block; width:80px;">Histogram</span> <input id="bin" type="range" value="10" min="1" max="20" step="1">  <input type="text" id="valueBinH" value="10" disabled="disabled" style="width: 20px;"/><br>
+<span style=" display: inline-block; width:80px;">Regression</span> <input id="regression" type="range" value="2.5" min="1" max="5" step="0.5">  <input type="text" id="valueRegression" value="2.5" disabled="disabled" style="width: 20px;"/>
 <script>
 var values=[14,9,10,11.5,0,12.5,16,8.5,3.5,8,12,14.5,1.5,13,14,13,2,8,13.5,8.5,12,8,3.5,11,8,14,15,8,12,10,11,6,13,1,8.5,10.5,13,9,8,14,11,1.5,12,2.5,9,6,10.5,16,9.5,12.5,8,2,20,5.5];
 
 $(document).ready(function () {
   var binH = $('#bin').val();
-  var g = new Graph('graph',300,100,values,parseInt(binH));
+  var regression = $('#regression').val();
+  var g = new Graph('graph',300,100,values,parseInt(binH),parseInt(regression));
   $('#valueBinH').val(binH);
   $("#bin").on("input", function(){
     $('#valueBinH').val(this.value);
-    updateRangeBar(g, values, this.value);
-  })
+	var regressionupdate = $('#regression').val();
+    updateRangeBar(g, values, this.value, regressionupdate);
+  });
+  $('#valueRegression').val(regression);
+  $("#regression").on("input", function(){
+    $('#valueRegression').val(this.value);
+	var binupdate = $('#bin').val();
+    updateRangeBar(g, values, binupdate, this.value);
+  });
 });
 </script>
 </body>
